@@ -32,9 +32,13 @@ public class RNImageToolsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void merge(ReadableArray uriStrings, Promise promise) {
-        Bitmap firstBmp = Utility.bitmapFromUriString(uriStrings.getString(0), promise, reactContext);
-        Bitmap secondBmp = Utility.bitmapFromUriString(uriStrings.getString(1), promise, reactContext);
+    public void merge(encodedImage1, encodedImage2, Promise promise) {
+        byte[] decodedString1 = Base64.decode(encodedImage1, Base64.DEFAULT)
+        byte[] decodedString2 = Base64.decode(encodedImage2, Base64.DEFAULT)
+        Bitmap firstBmp = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString.length);
+        Bitmap secondBmp = BitmapFactory.decodeByteArray(decodedString2, 0, decodedString.length);
+        // Bitmap firstBmp = Utility.bitmapFromUriString(uriStrings.getString(0), promise, reactContext);
+        // Bitmap secondBmp = Utility.bitmapFromUriString(uriStrings.getString(1), promise, reactContext);
         Bitmap editBmp = Bitmap.createBitmap(firstBmp.getWidth(), firstBmp.getHeight()+secondBmp.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(editBmp);
         canvas.drawBitmap(firstBmp, new Matrix(), null);
