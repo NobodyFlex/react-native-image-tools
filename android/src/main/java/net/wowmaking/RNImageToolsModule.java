@@ -41,11 +41,11 @@ public class RNImageToolsModule extends ReactContextBaseJavaModule {
 
         Rect srcRectFirst = new Rect(0, 0, firstBmp.getWidth(), firstBmp.getHeight());
         Rect dstRectFirst = new Rect(0, secondBmp.getHeight(), canvas.getWidth(), canvas.getHeight());
-        canvas.drawBitmap(firstBmp, srcRect, dstRect, null);
+        canvas.drawBitmap(firstBmp, srcRectFirst, dstRectFirst, null);
 
         Rect srcRectSecond = new Rect(0, 0, secondBmp.getWidth(), secondBmp.getHeight());
-        Rect dstRectSecond = new Rect(0, 0, canvas.getWidth(), canvas.getHeight()-firstBmp.getHeight);
-        canvas.drawBitmap(secondBmp, srcRect, dstRect, null);
+        Rect dstRectSecond = new Rect(0, 0, canvas.getWidth(), canvas.getHeight()-firstBmp.getHeight());
+        canvas.drawBitmap(secondBmp, srcRectSecond, dstRectSecond, null);
 
         File file = Utility.createRandomPNGFile(reactContext);
         Utility.writeBMPToPNGFile(editBmp, file, promise);
